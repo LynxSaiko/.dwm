@@ -5,7 +5,7 @@ CATEGORY_DIR="/usr/share/desktop-directories"
 APPLICATIONS_DIR="/usr/share/applications"
 
 # Rofi configuration
-ROFI_ICON_SIZE="64"  # Set your preferred icon size (16, 24, 32, 48, 64, etc.)
+ROFI_ICON_SIZE="24"  # Set your preferred icon size (16, 24, 32, 48, 64, etc.)
 ##ROFI_THEME="window {width: 40%;} listview {lines: 15;}"  # Customize rofi appearance
 
 # Function to show categories using rofi with icons
