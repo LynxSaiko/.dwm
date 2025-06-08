@@ -15,7 +15,7 @@ user@linux:~$ cd .dwm
 
 user@linux:~/.dwm$ sudo mv blackarch bar dmenu_run /usr/local/bin/  
 user@linux:~/.dwm$ sudo mv simple-tokyonight.rasi /usr/share/rofi/themes/
-
+user@linux:~/.dwm$ mv .Xresources /home/$USER/ && xrdb -merge ~/.Xresources
 user@linux:~/.dwm$ sudo make clean install  
 user@linux:~/.dwm$ exit  
 
