@@ -1,0 +1,19 @@
+dwm build options:
+CFLAGS   = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2 -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=200809L -DVERSION="6.2" -DXINERAMA
+LDFLAGS  = -L/usr/X11R6/lib -lX11 -lXinerama -lfontconfig -lXft
+CC       = cc
+cc -c -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2 -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=200809L -DVERSION=\"6.2\" -DXINERAMA drw.c
+cc -c -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2 -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=200809L -DVERSION=\"6.2\" -DXINERAMA dwm.c
+dwm.c: In function ‘drawbar’:
+dwm.c:904:39: error: ‘SchemePentest’ undeclared (first use in this function)
+  904 |             drw_setscheme(drw, scheme[SchemePentest]);
+      |                                       ^~~~~~~~~~~~~
+dwm.c:904:39: note: each undeclared identifier is reported only once for each function it appears in
+dwm.c: At top level:
+dwm.c:1337:1: warning: ‘monocle’ defined but not used [-Wunused-function]
+ 1337 | monocle(Monitor *m)
+      | ^~~~~~~
+dwm.c:330:27: warning: ‘tag5fontcount’ defined but not used [-Wunused-const-variable=]
+  330 | static const unsigned int tag5fontcount = LENGTH(tag5font);  // Add this line
+      |                           ^~~~~~~~~~~~~
+make: *** [Makefile:18: dwm.o] Error 1

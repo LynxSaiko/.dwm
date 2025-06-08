@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Direktori tempat aplikasi eksekusi berada
+APPLICATIONS_DIR="/usr/bin"
+
+# Pastikan direktori aplikasi ada
+if [ ! -d "$APPLICATIONS_DIR" ]; then
+    echo "Direktori aplikasi tidak ditemukan: $APPLICATIONS_DIR"
+    exit 1
+fi
+
+# Temukan semua aplikasi di /usr/bin dan ambil nama aplikasi
+apps=$(find "$APPLICATIONS_DIR" -type f -executable -exec basename {} \;)
+
+# Menampilkan daftar aplikasi dengan dmenu
+selected_app=$(echo "$apps" | dmenu -b -sb grey -sf black -nb '#0f101a' -p 'BlackarchMenu' -fn 'Terminus-12')
+
+# Jika aplikasi dipilih, jalankan aplikasi tersebut
+if [ -n "$selected_app" ]; then
+    # Cek apakah aplikasi yang dipilih ada di /usr/bin
+    if [ -x "$APPLICATIONS_DIR/$selected_app" ]; then
+        # Jalankan aplikasi dalam urxvt dan pastikan terminal tetap terbuka setelah aplikasi selesai
+        urxvt -e bash -c "$APPLICATIONS_DIR/$selected_app; exec bash" &
+    else
+        echo "Error: Aplikasi tidak ditemukan: $selected_app"
+        exit 1
+    fi
+fi
