@@ -1,4 +1,6 @@
 # <h3>Oh My Venus</h3>
+![Preview](2025-06-09_01-52.png)
+
 
 ```bash
 # ==============================================
@@ -41,4 +43,4 @@ $ MODKEY, XK_v ( Virtualbox )
 
 # [!] Replace '$USER' with your actual username  
 # [!] Requires sudo privileges for system paths
-![Preview](2025-06-09_01-52.png)
+
