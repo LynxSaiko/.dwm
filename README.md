@@ -6,6 +6,8 @@
 # ==============================================
 #            LINUX / DWM SETUP TOOLS           
 # ==============================================
+Defaults Layouts [F] Move Layouts to [M] gapplesgrid shortcut windows + Tab
+
 user@linux:~$ sudo apt update && sudo apt install -y xfonts-terminus urxvt xterm
 
 user@linux:~$ rofi -dump-config > config.rasi  
