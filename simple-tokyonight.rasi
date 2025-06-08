@@ -33,7 +33,7 @@ element-icon, element-text, scrollbar {
 window {
   location : northwest;
   width    : 490px;
-  height   : 480px;  
+  height   : 550px;  
   x-offset : 1px;
   y-offset : 23px;
   background-color: @bg1;
@@ -68,11 +68,12 @@ textbox {
 
 listview {
   padding      : 4px 0px;
-  lines        : 12;
+  lines        : 8;
   columns      : 2;
   scrollbar    : true;
   height : 440px;
   dynamic      : false;
+  
 }
 
 element {
@@ -103,7 +104,7 @@ element selected urgent {
 
 element-icon {
   enabled: true;
-  size: 1.3em;
+  size: 1.4em;
 }
 
 element-text {
@@ -115,5 +116,4 @@ scrollbar {
   handle-color : @fg2;
   padding      : 0 4px;
 }
-
 
