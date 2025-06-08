@@ -41,3 +41,4 @@ $ MODKEY, XK_v ( Virtualbox )
 
 # [!] Replace '$USER' with your actual username  
 # [!] Requires sudo privileges for system paths
+![Tampilan DWM](dwm-preview.png)
