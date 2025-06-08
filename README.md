@@ -11,7 +11,7 @@ user@linux:~$ sudo apt update && sudo apt install -y xfonts-terminus urxvt xterm
 user@linux:~$ rofi -dump-config > config.rasi  
 user@linux:~$ cd .dwm  
 
-user@linux:~/.dwm$ sudo mv blackarch bar /usr/local/bin/  
+user@linux:~/.dwm$ sudo mv blackarch bar dmenu_run /usr/local/bin/  
 user@linux:~/.dwm$ sudo mv simple-tokyonight.rasi /usr/share/rofi/themes/
 
 user@linux:~/.dwm$ sudo make clean install  
