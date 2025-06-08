@@ -1,106 +1,65 @@
 #!/bin/bash
 
-# Directories containing categories and applications
 CATEGORY_DIR="/usr/share/desktop-directories"
 APPLICATIONS_DIR="/usr/share/applications"
 
-# Rofi configuration
-ROFI_ICON_SIZE="24"  # Set your preferred icon size (16, 24, 32, 48, 64, etc.)
-##ROFI_THEME="window {width: 40%;} listview {lines: 15;}"  # Customize rofi appearance
-
-# Function to show categories using rofi with icons
 function show_categories() {
     categories=()
 
-    # Iterate through each category file
     for category_file in "$CATEGORY_DIR"/*.directory; do
         if [ -f "$category_file" ]; then
-            # Extract Name and Icon fields from the category file
             category_name=$(grep -m 1 "^Name=" "$category_file" | cut -d'=' -f2)
             category_icon=$(grep -m 1 "^Icon=" "$category_file" | cut -d'=' -f2)
-
-            # Use a default icon if no icon is defined
-            if [ -z "$category_icon" ]; then
-                category_icon="applications-system"
-            fi
-
-            # Format for rofi with icon support
+            [ -z "$category_icon" ] && category_icon="applications-system"
             categories+=("$category_name")
             categories+=("$category_icon")
         fi
     done
 
-    # Display the list of categories using rofi with icons
     selected_category=$(printf "%s\0icon\x1f%s\n" "${categories[@]}" | \
-        rofi -dmenu -i -show-icons -icon-theme "blackarch" \
-        -theme-str "element {icon-size: ${ROFI_ICON_SIZE}px;}" \
-        -p "Select category")
+        rofi -dmenu -i -show-icons -icon-theme "blackarch" -p "Select category")
 
     echo "$selected_category"
 }
 
-# Function to show applications within a selected category using rofi with icons
 function show_applications() {
     local category="$1"
     apps=()
 
-    # Iterate through each .desktop file
     for app_file in "$APPLICATIONS_DIR"/*.desktop; do
         if [ -f "$app_file" ]; then
-            # Skip NoDisplay=true applications
             no_display=$(grep -m 1 "^NoDisplay=" "$app_file" | cut -d'=' -f2)
             [ "$no_display" = "true" ] && continue
 
-            # Extract Name, Icon, and Categories fields
             app_name=$(grep -m 1 "^Name=" "$app_file" | cut -d'=' -f2)
             app_icon=$(grep -m 1 "^Icon=" "$app_file" | cut -d'=' -f2)
             app_categories=$(grep -m 1 "^Categories=" "$app_file" | cut -d'=' -f2)
 
-            # If the application belongs to the selected category, add it to the list
             if [[ "$app_categories" == *"$category"* ]]; then
-                # Use a default icon if none is specified
-                if [ -z "$app_icon" ]; then
-                    app_icon="applications-other"
-                fi
-
-                # Format for rofi with icon support
+                [ -z "$app_icon" ] && app_icon="applications-other"
                 apps+=("$app_name")
                 apps+=("$app_icon")
             fi
         fi
     done
 
-    # Show the list of applications using rofi with icons
     selected_app=$(printf "%s\0icon\x1f%s\n" "${apps[@]}" | \
-        rofi -dmenu -i -show-icons -icon-theme "blackarch" \
-        -theme-str "element {icon-size: ${ROFI_ICON_SIZE}px;}" \
-        -p "Select application")
+        rofi -dmenu -i -show-icons -icon-theme "blackarch" -p "Select application")
 
     echo "$selected_app"
 }
 
-# Function to execute the selected application
 function run_application() {
     local app_name="$1"
-
-    # Find the corresponding .desktop file by its Name
     app_file=$(grep -rl -m 1 "^Name=$app_name" "$APPLICATIONS_DIR" 2>/dev/null)
-    
-    # If not found, try partial match
     [ -z "$app_file" ] && app_file=$(grep -rl -m 1 "^Name=.*$app_name" "$APPLICATIONS_DIR" 2>/dev/null | head -1)
 
     if [ -n "$app_file" ]; then
-        # Extract the Exec command and clean it
         exec_command=$(grep -m 1 "^Exec=" "$app_file" | cut -d'=' -f2- | sed -e 's/ %.//g' -e 's/%[fFuUdDnNickvm]//g')
-        
-        # Check if application should run in terminal
         terminal_app=$(grep -m 1 "^Terminal=" "$app_file" | cut -d'=' -f2)
-        
         if [ "$terminal_app" = "true" ]; then
-            # Run in terminal
             urxvt -e bash -c "$exec_command; exec bash"
         else
-            # Run directly
             eval "$exec_command" &
         fi
     else
@@ -109,16 +68,10 @@ function run_application() {
     fi
 }
 
-# Main script workflow
-
-# Step 1: Show categories with icons
 selected_category=$(show_categories)
 
-# Step 2: If a category was selected, show applications in that category with icons
 if [ -n "$selected_category" ]; then
     selected_app=$(show_applications "$selected_category")
-
-    # Step 3: If an application was selected, run it
     if [ -n "$selected_app" ]; then
         run_application "$selected_app"
     else
