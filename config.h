@@ -230,8 +230,8 @@ static Key keys[] = {
     {0, XF86XK_AudioMute, spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle")},
 
     // Brightness
-    {0, XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl set +10%")},
-    {0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 10%-")},
+    { MODKEY, XK_Up,   spawn, SHCMD("brightnessctl set +10%") },
+    { MODKEY, XK_Down, spawn, SHCMD("brightnessctl set 10%-") },
 
 };
 
