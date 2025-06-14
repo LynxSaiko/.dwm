@@ -9,13 +9,6 @@ Panduan lengkap untuk menginstall font legendaris **Misc Fixed** dan **Terminus*
 
 ---
 
-## 📸 Screenshot
-
-> Tampilan DWM + URxvt menggunakan font Terminus:
-
-![Screenshot Placeholder](https://via.placeholder.com/800x300.png?text=Screenshot+Here)
-
----
 
 ## 📦 Instalasi Berdasarkan Distro
 
