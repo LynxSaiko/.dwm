@@ -13,7 +13,7 @@ fi
 apps=$(find "$APPLICATIONS_DIR" -type f -executable -exec basename {} \;)
 
 # Menampilkan daftar aplikasi dengan dmenu
-selected_app=$(echo "$apps" | dmenu -b -sb grey -sf black -nb '#0f101a' -p 'BlackarchMenu' -fn 'Terminus-12')
+selected_app=$(echo "$apps" | dmenu -b -sb grey -sf black -nb '#0f101a' -p 'BlackarchMenu' -fn 'xft:Misc Fixed:pixelsize=12')
 
 # Jika aplikasi dipilih, jalankan aplikasi tersebut
 if [ -n "$selected_app" ]; then
