@@ -8,7 +8,7 @@ MOD = key Super/Windows
 | MOD + m   | Launch Menu                 |
 | MOD + a/b/c/d  | URxvt (urxvt theme)    |
 | MOD + e   | Launch Caja                 |
-| MOD + n   | dmenu_run                   |
+| MOD + n   | dmenu                       |
 | MOD + w   | Kill Apps                   |
 | MOD + v   | Launch Virtualbox           |
 | MOD + 1..4 | Workspace 1–4              |
