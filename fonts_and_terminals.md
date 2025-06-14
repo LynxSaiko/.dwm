@@ -1,7 +1,13 @@
-# 🖋️ Linux Font & Terminal Setup (Misc Fixed + Terminus + URxvt + Xterm)
+# 🧷 Linux Fonts & Terminals: Misc Fixed, Terminus, URxvt, Xterm
+
+Panduan lengkap untuk menginstall font legendaris **Misc Fixed** dan **Terminus**, serta terminal minimalis **URxvt** dan **xterm**. Cocok untuk desktop ringan berbasis window manager seperti **DWM**, **i3**, **Fluxbox**, dan lainnya.
+
+---
+
+
+## 📦 Instalasi Berdasarkan Distro
 
 ## 📦 Debian / Ubuntu / Kali / Mint
-
 ```bash
 sudo apt update
 
