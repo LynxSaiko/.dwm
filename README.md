@@ -3,9 +3,10 @@
 
 - [`fonts_and_terminals.md`](fonts_and_terminals.md) – Panduan install font dan terminal di berbagai distro.
 - [`cheatsheet.md`](cheatsheet.md) – Cheat Sheet (Shortcuts)
-- 
+
+<h1>Setup</h1>
+
 ```bash
-#Setup
 # ==============================================
 #            LINUX / DWM SETUP TOOLS           
 # ==============================================
