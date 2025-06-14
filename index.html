@@ -1,43 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>.dwm - Custom DWM Config</title>
+  <meta charset="UTF-8" />
+  <title>.dwm – Minimal DWM Config</title>
 
-  <!-- 🧠 META PREVIEW for WhatsApp, Telegram, etc -->
-  <meta property="og:title" content=".dwm - Custom DWM Config">
-  <meta property="og:description" content="Preview of custom DWM (Dynamic Window Manager) setup with patches.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/RedTeamingSec/.dwm/master/2025-06-09_01-52.png">
-  <meta property="og:url" content="https://redteamingsec.github.io/.dwm/">
-  <meta name="twitter:card" content="summary_large_image">
+  <!-- Meta Preview -->
+  <meta property="og:title" content=".dwm – Minimal DWM Config" />
+  <meta property="og:description" content="Custom DWM setup with patches and preview. Clean and functional." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/RedTeamingSec/.dwm/master/2025-06-09_01-52.png" />
+  <meta property="og:url" content="https://redteamingsec.github.io/.dwm/" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- 🔄 Redirect in 3 seconds -->
-  <meta http-equiv="refresh" content="3;url=https://github.com/RedTeamingSec/.dwm">
+  <!-- Auto Redirect -->
+  <meta http-equiv="refresh" content="5; url=https://github.com/RedTeamingSec/.dwm" />
 
-  <!-- 🌙 Optional dark style -->
+  <!-- Responsive Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Style -->
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       background-color: #0d1117;
       color: #c9d1d9;
-      font-family: sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
       text-align: center;
-      padding: 40px;
+      padding: 20px;
     }
-    img {
-      max-width: 90%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
     }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #8b949e;
+    }
+
     a {
       color: #58a6ff;
       text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.05);
+      margin-top: 10px;
+    }
+
+    .preview-container {
+      max-width: 800px;
+      width: 100%;
     }
   </style>
 </head>
 <body>
-  <h1>Redirecting to GitHub Repo...</h1>
-  <p><a href="https://github.com/RedTeamingSec/.dwm">Click here if not redirected</a></p>
-  <img src="2025-06-09_01-52.png" alt="Preview">
+  <div class="preview-container">
+    <h1>.dwm – Minimalist Config</h1>
+    <p>You’ll be redirected to the GitHub repo shortly.<br />
+      <a href="https://github.com/RedTeamingSec/.dwm">Click here if not redirected.</a>
+    </p>
+    <img src="2025-06-09_01-52.png" alt="Preview of .dwm setup" />
+  </div>
 </body>
 </html>
