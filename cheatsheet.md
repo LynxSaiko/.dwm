@@ -1,5 +1,7 @@
 🧩 Cheat Sheet (Shortcut Key)
 
+MOD = key Super/Windows
+
 | Key        | Action                      |
 |-----------|-----------------------------|
 | MOD + f   | Launch Firefox              |
