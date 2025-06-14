@@ -5,10 +5,6 @@
 
 # 🧷 Linux Fonts & Terminals: Misc Fixed, Terminus, URxvt, Xterm
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Fonts Status](https://img.shields.io/badge/fonts-available-green)](#)
-[![Terminals](https://img.shields.io/badge/terminals-urxvt%20%7C%20xterm-blue)](#)
-
 Panduan lengkap untuk menginstall font legendaris **Misc Fixed** dan **Terminus**, serta terminal minimalis **URxvt** dan **xterm**. Cocok untuk desktop ringan berbasis window manager seperti **DWM**, **i3**, **Fluxbox**, dan lainnya.
 
 ---
@@ -36,14 +32,42 @@ sudo apt install xfonts-base xfonts-75dpi
 
 # Fonts: Terminus (bitmap dan TTF)
 sudo apt install xfonts-terminus fonts-terminus
+============================================================================================
+Arch / Manjaro / BlackArch
+
+# Terminal
+sudo pacman -S rxvt-unicode xterm
+
+# Fonts: Misc Fixed (bitmap)
+sudo pacman -S xorg-fonts-misc
+
+# Fonts: Terminus
+sudo pacman -S terminus-font ttf-terminus-nerd
+================================================================================================
+
+Fedora
+
+# Terminal
+sudo dnf install rxvt-unicode xterm
+
+# Fonts
+sudo dnf install xorg-x11-fonts-misc terminus-fonts
+==================================================================================================
+
+openSUSE
+
+# Terminal
+sudo zypper install rxvt-unicode xterm
+
+# Fonts
+sudo zypper install xorg-x11-fonts terminus-fonts
+===============================================================================================
 
 ```bash
 # ==============================================
 #            LINUX / DWM SETUP TOOLS           
 # ==============================================
 Defaults Layouts [F] Move Layouts to [M] gapplesgrid shortcut windows + Tab
-
-user@linux:~$ sudo apt update && sudo apt install -y xfonts-terminus urxvt xterm
 
 user@linux:~$ rofi -dump-config > config.rasi  
 user@linux:~$ cd .dwm  
