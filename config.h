@@ -208,7 +208,7 @@ static Key keys[] = {
 
     // File explorer
     { MODKEY, XK_e, spawn, SHCMD("caja") },
-
+    { MODKEY, XK_n, spawn, SHCMD("dmenu_run") },
     // Browser
     { MODKEY, XK_f, spawn, SHCMD("firefox") },
     
