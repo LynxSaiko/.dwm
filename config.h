@@ -30,7 +30,7 @@ static const int barheight = 24;
 // ---------------------------------- Fonts ------------------------------------
 
 static const char *fonts[] = { "xos4 Terminus:pixelsize=15:antialias=false:autohint:true" };
-static const char dmenufont[] = "Iosevka Nerd Font Medium:size=13:antialias=true:autohint=true";
+static const char dmenufont[] = "Misc Fixed:size=13:antialias=true:autohint=true";
 
 /* color definitions */
 
