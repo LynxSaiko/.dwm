@@ -2,6 +2,41 @@
 ![Preview](2025-06-09_01-52.png)
 
 
+
+# 🧷 Linux Fonts & Terminals: Misc Fixed, Terminus, URxvt, Xterm
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Fonts Status](https://img.shields.io/badge/fonts-available-green)](#)
+[![Terminals](https://img.shields.io/badge/terminals-urxvt%20%7C%20xterm-blue)](#)
+
+Panduan lengkap untuk menginstall font legendaris **Misc Fixed** dan **Terminus**, serta terminal minimalis **URxvt** dan **xterm**. Cocok untuk desktop ringan berbasis window manager seperti **DWM**, **i3**, **Fluxbox**, dan lainnya.
+
+---
+
+## 📸 Screenshot
+
+> Tampilan DWM + URxvt menggunakan font Terminus:
+
+![Screenshot Placeholder](https://via.placeholder.com/800x300.png?text=Screenshot+Here)
+
+---
+
+## 📦 Instalasi Berdasarkan Distro
+
+### 🐧 Debian / Ubuntu / Kali / Mint
+
+```bash
+sudo apt update
+
+# Terminal
+sudo apt install rxvt-unicode xterm
+
+# Fonts: Misc Fixed (bitmap)
+sudo apt install xfonts-base xfonts-75dpi
+
+# Fonts: Terminus (bitmap dan TTF)
+sudo apt install xfonts-terminus fonts-terminus
+
 ```bash
 # ==============================================
 #            LINUX / DWM SETUP TOOLS           
@@ -37,11 +72,13 @@ $ MODKEY, XK_a ( Urxvt Green )
 $ MODKEY, XK_b ( Urxvt Yellow )
 $ MODKEY, XK_c ( Urxvt Red )
 $ MODKEY, XK_d ( Urxvt White )
+$ MODKEY, XK_e ( caja )
 $ MODKEY, 1 ( Workspace 1 )
 $ MODKEY, 2 ( Worspace 2 )
 $ MODKEY, 3 ( Worspace 3 )
 $ MODKEY, 4 ( Worspace 4 )
-$ MODKEY, XK_r ( Dmenu )
+$ MODKEY, XK_n ( Dmenu )
+$ MODKEY, XK_w ( KIll Apps )
 $ MODKEY, XK_v ( Virtualbox )
 
 # ==============================================
