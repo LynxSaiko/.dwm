@@ -28,16 +28,24 @@ static const int sidepad = 4;
 static const int barheight = 24;
 
 // ---------------------------------- Fonts ------------------------------------
+
 static const char *fonts[] = { "xos4 Terminus:pixelsize=15:antialias=false:autohint:true" };
 static const char dmenufont[] = "Iosevka Nerd Font Medium:size=13:antialias=true:autohint=true";
 
 /* color definitions */
+
+
+
+
+// HAPUS enum jika ada
+// HAPUS baris ini jika ada: enum { SchemeNorm, SchemeSel };
+
 // Definisikan warna
 static const char nord_fg[] = "#D8DEE9";
 static const char nord_sel_fg[] = "#2e3440";
 static const char nord_bg[] = "#0f101a"; 
 static const char nord_sel_bg[] = "#C0C0C0";
-static const char nord_border[] = "#0f101a";
+static const char nord_border[] = "#2F343F";
 static const char nord_main_fg[] = "#888888"; // Warna lebih redup untuk MAIN
 
 // Array colors TANPA named indices
@@ -50,7 +58,7 @@ static const char *colors[][3] = {
 
 
 // -------------------------------- Workspaces ---------------------------------
-static const char *tags[] = { "PENTEST", "DEVEL", "MISC", "INTERNET", "\u29C9" };
+static const char *tags[] = { "PENTEST", "DEVEL", "MISC", "INTERNET", "⧉" };
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -157,6 +165,8 @@ static Key keys[] = {
 
 	{ MODKEY,                       XK_Tab,    cyclelayout,   {0} },
 
+	
+
     // ---------------- Workspaces -----------------
 
     TAGKEYS(XK_1, 0)
@@ -171,10 +181,10 @@ static Key keys[] = {
 
     // ------------------- Apps --------------------
     //{ MODKEY|ShiftMask, XK_c, spawn, {.v = termcmd } }, 
-    { MODKEY, XK_a, spawn, SHCMD("urxvt -bg black -fg green") },
-    { MODKEY, XK_b, spawn, SHCMD("urxvt -bg black -fg yellow") },
-    { MODKEY, XK_c, spawn, SHCMD("urxvt -bg black -fg red") },
-    { MODKEY, XK_d, spawn, SHCMD("urxvt -bg black -fg white") },
+    { MODKEY, XK_a, spawn, SHCMD("urxvt -bg black -fg green -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
+{ MODKEY, XK_b, spawn, SHCMD("urxvt -bg black -fg yellow -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
+{ MODKEY, XK_c, spawn, SHCMD("urxvt -bg black -fg red -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
+{ MODKEY, XK_d, spawn, SHCMD("urxvt -bg black -fg white -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
     // dmenu
     //{ MODKEY, XK_r, spawn, {.v = dmenucmd } },
 
@@ -197,7 +207,7 @@ static Key keys[] = {
    // { MODKEY, XK_Return, spawn, SHCMD("urxvt") },
 
     // File explorer
-    { MODKEY, XK_e, spawn, SHCMD("fmanager") },
+    { MODKEY, XK_e, spawn, SHCMD("caja") },
 
     // Browser
     { MODKEY, XK_f, spawn, SHCMD("firefox") },
@@ -230,7 +240,7 @@ static Button buttons[] = {
     // click            event mask    button       function         argument 
     { ClkLtSymbol,      0,            Button1,     setlayout,       {0} },
     { ClkLtSymbol,      0,            Button3,     setlayout,       {.v = &layouts[2]} },
-    { ClkLtSymbol,      0,            Button3,     cyclelayout,     {.i = +1 } }, // klik kanan putar layout
+    { ClkLtSymbol,      0,          Button3,        cyclelayout,    {.i = +1 } }, // klik kanan putar layout
     { ClkWinTitle,      0,            Button2,     zoom,            {0} },
     { ClkStatusText,    0,            Button2,     spawn,           {.v = termcmd } },
     { ClkClientWin,     MODKEY,       Button1,     movemouse,       {0} },
