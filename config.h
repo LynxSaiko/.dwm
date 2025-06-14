@@ -162,8 +162,7 @@ static Key keys[] = {
 	
     // Quit dwm
     //{ MODKEY|ControlMask, XK_q, quit, {0} },
-
-	{ MODKEY,                       XK_Tab,    cyclelayout,   {0} },
+    { MODKEY,                       XK_Tab,    cyclelayout,   {0} },
 
 	
 
@@ -182,15 +181,15 @@ static Key keys[] = {
     // ------------------- Apps --------------------
     //{ MODKEY|ShiftMask, XK_c, spawn, {.v = termcmd } }, 
     { MODKEY, XK_a, spawn, SHCMD("urxvt -bg black -fg green -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
-{ MODKEY, XK_b, spawn, SHCMD("urxvt -bg black -fg yellow -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
-{ MODKEY, XK_c, spawn, SHCMD("urxvt -bg black -fg red -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
-{ MODKEY, XK_d, spawn, SHCMD("urxvt -bg black -fg white -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
+    { MODKEY, XK_b, spawn, SHCMD("urxvt -bg black -fg yellow -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
+    { MODKEY, XK_c, spawn, SHCMD("urxvt -bg black -fg red -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
+    { MODKEY, XK_d, spawn, SHCMD("urxvt -bg black -fg white -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
     // dmenu
     //{ MODKEY, XK_r, spawn, {.v = dmenucmd } },
 
     // rofi
     //{ MODKEY, XK_m, spawn, SHCMD("rofi -modi drun,run -show drun -show-icons") },
-    { MODKEY, XK_m, spawn, SHCMD("blackarch") },
+    { MODKEY, XK_m, spawn, SHCMD("menu") },
     //{ MODKEY, XK_m, spawn, {.v = (const char *[]){ "dmenu_run", NULL } } },
     
     //{ MODKEY, XK_r, spawn, SHCMD("dmenu_run -b -sb grey -sf black  -p 'BlackarchMenu' -nb '#0f101a'  -fn 'Terminus-12'") },
