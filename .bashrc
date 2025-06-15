@@ -20,8 +20,8 @@ alias shred="shred -zf"
 alias wget="wget -U 'noleak'"
 alias curl="curl --user-agent 'noleak'"
 alias clear='printf "\033c"'
-alias python3=/opt/python/3.9.14/bin/python3
-alias pip3=/opt/python/3.9.14/bin/pip3
+#alias python3=/opt/python/3.9.14/bin/python3
+#alias pip3=/opt/python/3.9.14/bin/pip3
 # source files
 [ -r /usr/share/bash-completion/completions ] &&
   . /usr/share/bash-completion/completions/*
