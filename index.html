@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <title>.dwm – Minimal DWM Config</title>
 
-  <!-- Social Preview Meta -->
+  <!-- Meta Preview -->
   <meta property="og:title" content=".dwm – Minimal DWM Config" />
-  <meta property="og:description" content="Preview of custom DWM setup with patches. Clean, minimal, and efficient." />
+  <meta property="og:description" content="Custom DWM setup with patches and preview. Clean and functional." />
   <meta property="og:image" content="https://raw.githubusercontent.com/RedTeamingSec/.dwm/master/2025-06-09_01-52.png" />
   <meta property="og:url" content="https://redteamingsec.github.io/.dwm/" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -14,7 +14,7 @@
   <!-- Auto Redirect -->
   <meta http-equiv="refresh" content="5; url=https://github.com/RedTeamingSec/.dwm" />
 
-  <!-- Responsive Settings -->
+  <!-- Responsive Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Style -->
@@ -31,59 +31,55 @@
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
+      justify-content: center;
+      min-height: 100vh;
       text-align: center;
-      overflow: hidden;
+      padding: 20px;
     }
 
-    .info {
-      position: absolute;
-      top: 20px;
-      width: 100%;
-      text-align: center;
-      z-index: 10;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
     }
 
-    .info h1 {
-      font-size: 1.5rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .info p {
+    p {
       font-size: 1rem;
+      margin-bottom: 1.5rem;
       color: #8b949e;
     }
 
-    .info a {
+    a {
       color: #58a6ff;
       text-decoration: none;
+      font-weight: 500;
     }
 
-    .info a:hover {
+    a:hover {
       text-decoration: underline;
     }
 
-    .preview-img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: 1;
-      opacity: 0.96;
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.05);
+      margin-top: 10px;
+    }
+
+    .preview-container {
+      max-width: 800px;
+      width: 100%;
     }
   </style>
 </head>
 <body>
-  <div class="info">
-    <h1>Redirecting to .dwm GitHub Repo...</h1>
-    <p>
-      <a href="https://github.com/RedTeamingSec/.dwm">Click here if not redirected</a>
+  <div class="preview-container">
+    <h1>.dwm – Minimalist Config</h1>
+    <p>You’ll be redirected to the GitHub repo shortly.<br />
+      <a href="https://github.com/RedTeamingSec/.dwm">Click here if not redirected.</a>
     </p>
+    <img src="2025-06-09_01-52.png" alt="Preview of .dwm setup" />
   </div>
-  <img class="preview-img" src="2025-06-09_01-52.png" alt="DWM Preview Fullscreen" />
 </body>
 </html>
