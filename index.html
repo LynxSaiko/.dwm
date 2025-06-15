@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>.dwm – Minimal DWM Config</title>
+  <title>Dwm Minimal DWM Config</title>
 
   <!-- Meta Preview -->
-  <meta property="og:title" content=".dwm – Minimal DWM Config" />
+  <meta property="og:title" content="Dwm Minimal DWM Config" />
   <meta property="og:description" content="Custom DWM setup with patches and preview. Clean and functional." />
-  <meta property="og:image" content="https://raw.githubusercontent.com/RedTeamingSec/.dwm/master/2025-06-09_01-52.png" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/RedTeamingSec/.dwm/2025-06-09_01-52.png" />
   <meta property="og:url" content="https://redteamingsec.github.io/.dwm/" />
   <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Auto Redirect -->
-  <meta http-equiv="refresh" content="5; url=https://github.com/RedTeamingSec/.dwm" />
 
   <!-- Responsive Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -49,14 +46,19 @@
       color: #8b949e;
     }
 
-    a {
-      color: #58a6ff;
-      text-decoration: none;
+    button {
+      background-color: #238636;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
       font-weight: 500;
     }
 
-    a:hover {
-      text-decoration: underline;
+    button:hover {
+      background-color: #2ea043;
     }
 
     img {
@@ -75,11 +77,16 @@
 </head>
 <body>
   <div class="preview-container">
-    <h1>.dwm – Minimalist Config</h1>
-    <p>You’ll be redirected to the GitHub repo shortly.<br />
-      <a href="https://github.com/RedTeamingSec/.dwm">Click here if not redirected.</a>
-    </p>
+    <h1>Dwm Minimalist Config</h1>
+    <p>Click the button below to go to the GitHub repository.</p>
+    <button onclick="redirectToRepo()">Go to GitHub Repo</button>
     <img src="2025-06-09_01-52.png" alt="Preview of .dwm setup" />
   </div>
+
+  <script>
+    function redirectToRepo() {
+      window.location.href = "https://github.com/RedTeamingSec/.dwm";
+    }
+  </script>
 </body>
 </html>
