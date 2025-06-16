@@ -1,5 +1,5 @@
 # <h3>Oh My Venus</h3>
-![Preview](2025-06-09_01-52.png)
+![Preview](2025-06-17_00-22.png)
 
 - [`fonts_and_terminals.md`](fonts_and_terminals.md) – Panduan install font dan terminal di berbagai distro.
 - [`cheatsheet.md`](cheatsheet.md) – Cheat Sheet (Shortcuts)
