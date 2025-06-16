@@ -18,7 +18,7 @@ user@linux:~$ cd .dwm
 user@linux:~/.dwm$ sudo mv menu bar dmenu_run /usr/local/bin/  
 user@linux:~/.dwm$ sudo mv dark-owl.rasi /usr/share/rofi/themes/
 user@linux:~/.dwm$ mv .Xresources /home/$USER/ && xrdb -merge ~/.Xresources
-user@linux:~/.dwm$ sudo make clean install  
+user@linux:~/.dwm$ sudo make install && sudo make clean install  
 user@linux:~/.dwm$ exit  
 
 # ==============================================
