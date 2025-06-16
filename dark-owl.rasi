@@ -1,5 +1,5 @@
 * {
-  font:   "Dejavu Sans Mono 11";
+  font:   "Terminus (TTF) Regular 12";
 
   bg0     : #0f101a;
   bg1     : #0f101a;
@@ -8,7 +8,7 @@
   fg0     : #eee;
   fg1     : #a9b1d6;
   fg2     : #737aa2;
-  red     : grey;
+  red     : #6b030f;
   green   : #9ece6a;
   yellow  : #e0af68;
   blue    : #7aa2f7;
@@ -32,7 +32,7 @@ element-icon, element-text, scrollbar {
 
 window {
   location : northwest;
-  width    : 490px;
+  width    : 460px;
   height   : 550px;  
   x-offset : 1px;
   y-offset : 23px;
@@ -116,3 +116,4 @@ scrollbar {
   handle-color : @fg2;
   padding      : 0 4px;
 }
+
