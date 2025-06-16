@@ -162,7 +162,8 @@ static Key keys[] = {
 	
     // Quit dwm
     //{ MODKEY|ControlMask, XK_q, quit, {0} },
-    { MODKEY,                       XK_Tab,    cyclelayout,   {0} },
+
+	{ MODKEY,                       XK_Tab,    cyclelayout,   {0} },
 
 	
 
@@ -180,16 +181,16 @@ static Key keys[] = {
 
     // ------------------- Apps --------------------
     //{ MODKEY|ShiftMask, XK_c, spawn, {.v = termcmd } }, 
-    { MODKEY, XK_a, spawn, SHCMD("urxvt -bg black -fg green -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
-    { MODKEY, XK_b, spawn, SHCMD("urxvt -bg black -fg yellow -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
-    { MODKEY, XK_c, spawn, SHCMD("urxvt -bg black -fg red -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
-    { MODKEY, XK_d, spawn, SHCMD("urxvt -bg black -fg white -fn \"xft:Misc Fixed:size=14\" -geometry 88x28") },
+    { MODKEY, XK_a, spawn, SHCMD("urxvt -bg black -fg green -fn \"xft:Misc Fixed:pixelsize=17\" -geometry 84x28") },
+{ MODKEY, XK_b, spawn, SHCMD("urxvt -bg black -fg yellow -fn \"xft:Misc Fixed:pixelsize=17\" -geometry 84x28") },
+{ MODKEY, XK_c, spawn, SHCMD("urxvt -bg black -fg red -fn \"xft:Misc Fixed:pixelsize=17\" -geometry 84x28") },
+{ MODKEY, XK_d, spawn, SHCMD("urxvt -bg black -fg white -fn \"xft:Misc Fixed:pixelsize=17\" -geometry 84x28") },
     // dmenu
     //{ MODKEY, XK_r, spawn, {.v = dmenucmd } },
 
     // rofi
     //{ MODKEY, XK_m, spawn, SHCMD("rofi -modi drun,run -show drun -show-icons") },
-    { MODKEY, XK_m, spawn, SHCMD("menu") },
+    { MODKEY, XK_m, spawn, SHCMD("blackarch") },
     //{ MODKEY, XK_m, spawn, {.v = (const char *[]){ "dmenu_run", NULL } } },
     
     //{ MODKEY, XK_r, spawn, SHCMD("dmenu_run -b -sb grey -sf black  -p 'BlackarchMenu' -nb '#0f101a'  -fn 'Terminus-12'") },
@@ -207,7 +208,8 @@ static Key keys[] = {
 
     // File explorer
     { MODKEY, XK_e, spawn, SHCMD("caja") },
-    { MODKEY, XK_n, spawn, SHCMD("dmenu_run") },
+	{ MODKEY, XK_n, spawn, SHCMD("dmenu_run") },
+
     // Browser
     { MODKEY, XK_f, spawn, SHCMD("firefox") },
     
@@ -231,7 +233,6 @@ static Key keys[] = {
     // Brightness
     { MODKEY, XK_Up,   spawn, SHCMD("brightnessctl set +10%") },
     { MODKEY, XK_Down, spawn, SHCMD("brightnessctl set 10%-") },
-
 };
 
 // click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin 
@@ -239,7 +240,7 @@ static Button buttons[] = {
     // click            event mask    button       function         argument 
     { ClkLtSymbol,      0,            Button1,     setlayout,       {0} },
     { ClkLtSymbol,      0,            Button3,     setlayout,       {.v = &layouts[2]} },
-    { ClkLtSymbol,      0,            Button3,     cyclelayout,     {.i = +1 } }, // klik kanan putar layout
+    { ClkLtSymbol,      0,          Button3,        cyclelayout,    {.i = +1 } }, // klik kanan putar layout
     { ClkWinTitle,      0,            Button2,     zoom,            {0} },
     { ClkStatusText,    0,            Button2,     spawn,           {.v = termcmd } },
     { ClkClientWin,     MODKEY,       Button1,     movemouse,       {0} },
