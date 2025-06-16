@@ -190,7 +190,7 @@ static Key keys[] = {
 
     // rofi
     //{ MODKEY, XK_m, spawn, SHCMD("rofi -modi drun,run -show drun -show-icons") },
-    { MODKEY, XK_m, spawn, SHCMD("blackarch") },
+    { MODKEY, XK_m, spawn, SHCMD("menu") },
     //{ MODKEY, XK_m, spawn, {.v = (const char *[]){ "dmenu_run", NULL } } },
     
     //{ MODKEY, XK_r, spawn, SHCMD("dmenu_run -b -sb grey -sf black  -p 'BlackarchMenu' -nb '#0f101a'  -fn 'Terminus-12'") },
