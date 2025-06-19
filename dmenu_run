@@ -20,7 +20,7 @@ if [ -n "$selected_app" ]; then
     # Cek apakah aplikasi yang dipilih ada di /usr/bin
     if [ -x "$APPLICATIONS_DIR/$selected_app" ]; then
         # Jalankan aplikasi dalam urxvt dan pastikan terminal tetap terbuka setelah aplikasi selesai
-        urxvt -e bash -c "$APPLICATIONS_DIR/$selected_app; exec bash" &
+        xterm -fa 'Misc Fixed' -fs 13 -e bash -c "$APPLICATIONS_DIR/$selected_app; exec bash" &
     else
         echo "Error: Aplikasi tidak ditemukan: $selected_app"
         exit 1
