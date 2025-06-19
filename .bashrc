@@ -25,5 +25,3 @@ alias clear='printf "\033c"'
 # source files
 [ -r /usr/share/bash-completion/completions ] &&
   . /usr/share/bash-completion/completions/*
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
