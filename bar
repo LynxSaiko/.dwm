@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+
+# YOU CAN EDIT THE LINES BELOW 
+
+DEFAULT_DEVICE_NAME='battery_BAT0' 
+# YOU CAN EDIT THE LINES ABOVE # ! DO NOT EDIT VARIABLES BELOW ! # 
+
+DEVICE_NAME=${1:-'battery_BAT0'} 
+PATH_PREFIX='/org/freedesktop/UPower/devices' 
+DEVICE_PATH="$PATH_PREFIX/$DEVICE_NAME" 
+# ! DO NOT EDIT VARIABLES ABOVE ! #
+
+while true; do         
+       date '+%a %d %b %Y | %T' > /tmp/CurTime.tmp         
+       sleep 1s 
+done &
+
+while true; do
+        CPU=$(top -bn1 | grep load | awk '{printf "%.2f\n", $(NF-2)}')
+        MEM=$(free -h | awk '/^Mem:/ {print $3}')
+        LOCALTIME=$(< /tmp/CurTime.tmp)
+        #BHT=$(cat /sys/class/power_supply/BAT0/capacity)
+        battery_info=$(upower -i $(upower -e | grep battery))
+        BHT=$(echo "$battery_info" | awk -F':' '/voltage/ {print $2}' | xargs) 
+        TIME_TO_EMPTY=$(echo "$battery_info" | awk -F':' '/time to empty/ {print $2}' | xargs) 
+        #TIME_TO_EMPTY=$(echo "$battery_info" | awk -F':' '/time to empty/ {print $4}' | xargs)
+        NET=$(nmcli dev wifi | grep -E '^[*]' | awk '/*/ {print $8}')
+        TOTALDOWN=$(ifconfig wlan0| grep "RX packets" | awk {'print $6 $7'}) # Set wlan0 or wlan1
+        TOTALUP=$(ifconfig wlan0| grep "TX packets" | awk {'print $6 $7'}) # Set wlan0 or wlan1
+        xsetroot -name "CPU:$CPU | Mem:$MEM | Net: $NET up: $TOTALUP down: $TOTALDOWN | $LOCALTIME | .$BHT | W.$TIME_TO_EMPTY"
+
+        sleep 1s
+done &
