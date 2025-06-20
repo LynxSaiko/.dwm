@@ -40,21 +40,27 @@ static const char dmenufont[] = "Misc Fixed:size=13:antialias=true:autohint=true
 // HAPUS enum jika ada
 // HAPUS baris ini jika ada: enum { SchemeNorm, SchemeSel };
 
-// Definisikan warna
-static const char nord_fg[] = "#D8DEE9";
-static const char nord_sel_fg[] = "#2e3440";
-static const char nord_bg[] = "#0f101a"; 
-static const char nord_sel_bg[] = "#C0C0C0";
-static const char nord_border[] = "#2F343F";
-static const char nord_main_fg[] = "#888888"; // Warna lebih redup untuk MAIN
+// Warna-warna Nord
+static const char nord_fg[]            = "#D8DEE9";
+static const char nord_sel_fg[]        = "#2e3440";
+static const char nord_bg[]            = "#0f101a"; 
+static const char nord_sel_bg[]        = "#C0C0C0";
+static const char nord_border[]        = "#2F343F";
 
-// Array colors TANPA named indices
+static const char nord_main_fg[]       = "#888888";
+static const char nord_root_fg[]       = "#00ffff";
+static const char nord_root_bg[]       = "#0f101a";
+static const char nord_root_border[]   = "#550000";
+
+// Array warna skema
 static const char *colors[][3] = {
-    /* fg,         bg,         border */
-    { nord_fg,    nord_bg,      nord_border },  // Index 0 (SchemeNorm)
-    { nord_sel_fg, nord_sel_bg, nord_sel_bg },   // Index 1 (SchemeSel)
-    { nord_main_fg,    nord_bg,      nord_bg },       // 2 = SchemeMain (untuk MAIN)
+    /* fg             bg               border */
+    { nord_fg,         nord_bg,         nord_border },        // 0 = SchemeNorm
+    { nord_sel_fg,     nord_sel_bg,     nord_sel_bg },        // 1 = SchemeSel
+    { nord_main_fg,    nord_bg,         nord_bg },            // 2 = SchemeMain
+    { nord_root_fg,    nord_root_bg,    nord_root_border },   // 3 = SchemeRootBar
 };
+
 
 
 // -------------------------------- Workspaces ---------------------------------
@@ -112,10 +118,11 @@ static const char *dmenucmd[] = {
 //static const char *roficmd[] = { "/home/lazarus/.dwm/blackarch.sh", NULL };
 //static const char *dmenucmd[] = { "rofi", "-show", "run", NULL };
 #include <X11/XF86keysym.h>
+#include <X11/keysym.h>
 static Key keys[] = {
 
     // ------------------ Windows ------------------
-	{ MODKEY|ShiftMask,  XK_f,      setlayout,      {.v = &layouts[1]} },  // Pindah ke layout floating
+    { MODKEY|ShiftMask,  XK_f,      setlayout,      {.v = &layouts[1]} },  // Pindah ke layout floating
     // Switch between windows
     { MODKEY, XK_j, focusstack, {.i = +1 } },
     { MODKEY, XK_k, focusstack, {.i = -1 } },
@@ -165,7 +172,7 @@ static Key keys[] = {
     // Quit dwm
     //{ MODKEY|ControlMask, XK_q, quit, {0} },
 
-	{ MODKEY,                       XK_Tab,    cyclelayout,   {0} },
+    { MODKEY,                       XK_Tab,    cyclelayout,   {0} },
 
 	
 
@@ -184,15 +191,15 @@ static Key keys[] = {
     // ------------------- Apps --------------------
     //{ MODKEY|ShiftMask, XK_c, spawn, {.v = termcmd } }, 
     { MODKEY, XK_a, spawn, SHCMD("urxvt -bg black -fg green -fn \"xft:Misc Fixed:pixelsize=17\" -geometry 84x28") },
-{ MODKEY, XK_b, spawn, SHCMD("urxvt -bg black -fg yellow -fn \"xft:Misc Fixed:pixelsize=17\" -geometry 84x28") },
-{ MODKEY, XK_c, spawn, SHCMD("urxvt -bg black -fg red -fn \"xft:Misc Fixed:pixelsize=17\" -geometry 84x28") },
-{ MODKEY, XK_d, spawn, SHCMD("urxvt -bg black -fg white -fn \"xft:Misc Fixed:pixelsize=17\" -geometry 84x28") },
+    { MODKEY, XK_b, spawn, SHCMD("urxvt -bg black -fg yellow -fn \"xft:Misc Fixed:pixelsize=17\" -geometry 84x28") },
+    { MODKEY, XK_c, spawn, SHCMD("urxvt -bg black -fg red -fn \"xft:Misc Fixed:pixelsize=17\" -geometry 84x28") },
+    { MODKEY, XK_d, spawn, SHCMD("urxvt -bg black -fg white -fn \"xft:Misc Fixed:pixelsize=17\" -geometry 84x28") },
     // dmenu
     //{ MODKEY, XK_r, spawn, {.v = dmenucmd } },
 
     // rofi
     //{ MODKEY, XK_m, spawn, SHCMD("rofi -modi drun,run -show drun -show-icons") },
-    { MODKEY, XK_m, spawn, SHCMD("blackarch") },
+    { MODKEY, XK_m, spawn, SHCMD("menu") },
     //{ MODKEY, XK_m, spawn, {.v = (const char *[]){ "dmenu_run", NULL } } },
     
     //{ MODKEY, XK_r, spawn, SHCMD("dmenu_run -b -sb grey -sf black  -p 'BlackarchMenu' -nb '#0f101a'  -fn 'Terminus-12'") },
@@ -210,12 +217,13 @@ static Key keys[] = {
 
     // File explorer
     { MODKEY, XK_e, spawn, SHCMD("caja") },
-	{ MODKEY, XK_n, spawn, SHCMD("dmenu_run") },
+    { MODKEY, XK_n, spawn, SHCMD("dmenu_run") },
 
     // Browser
     { MODKEY, XK_f, spawn, SHCMD("firefox") },
     
     { MODKEY, XK_v, spawn, SHCMD("virtualbox") },
+    { MODKEY, XK_F12,  togglerootmode,   {0} },
 
     // Redshift
     { MODKEY, XK_r, spawn, SHCMD("redshift -O 2400") },
@@ -228,9 +236,9 @@ static Key keys[] = {
     // ----------------- Hardware ------------------
 
     // Volume
-    {0, XF86XK_AudioLowerVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%")},
-    {0, XF86XK_AudioRaiseVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%")},
-    {0, XF86XK_AudioMute, spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle")},
+    //{0, XF86XK_AudioLowerVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%")},
+    //{0, XF86XK_AudioRaiseVolume, spawn, SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%")},
+   // {0, XF86XK_AudioMute, spawn, SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle")},
 
     // Brightness
     { MODKEY, XK_Up,   spawn, SHCMD("brightnessctl set +10%") },
@@ -242,7 +250,7 @@ static Button buttons[] = {
     // click            event mask    button       function         argument 
     { ClkLtSymbol,      0,            Button1,     setlayout,       {0} },
     { ClkLtSymbol,      0,            Button3,     setlayout,       {.v = &layouts[2]} },
-    { ClkLtSymbol,      0,          Button3,        cyclelayout,    {.i = +1 } }, // klik kanan putar layout
+    { ClkLtSymbol,      0,            Button3,     cyclelayout,     {.i = +1 } }, // klik kanan putar layout
     { ClkWinTitle,      0,            Button2,     zoom,            {0} },
     { ClkStatusText,    0,            Button2,     spawn,           {.v = termcmd } },
     { ClkClientWin,     MODKEY,       Button1,     movemouse,       {0} },
