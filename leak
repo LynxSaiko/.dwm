@@ -1,0 +1,150 @@
+#!/bin/bash
+
+CATEGORY_DIR="/usr/share/desktop-directories"
+APPLICATIONS_DIR="/usr/share/applications"
+
+# Fungsi untuk mengekstrak nama teknis kategori dari nama file .directory
+# Contoh: leakos-intelligent-gather.directory -> intelligent-gather
+function get_technical_category_name() {
+    local directory_file="$1"
+    basename "$directory_file" | sed -E 's/leakos-(.*)\.directory/\1/'
+}
+
+# --- Fungsi Utama 1: Menampilkan Kategori ---
+function show_categories() {
+    local categories=()
+    local category_map="" # Untuk memetakan Nama Cantik ke Nama Teknis
+
+    for category_file in "$CATEGORY_DIR"/*.directory; do
+        if [ -f "$category_file" ]; then
+            category_name=$(grep -m 1 "^Name=" "$category_file" | cut -d'=' -f2-)
+            [ -z "$category_name" ] && continue
+
+            category_technical_name=$(get_technical_category_name "$category_file")
+            category_icon=$(grep -m 1 "^Icon=" "$category_file" | cut -d'=' -f2-)
+            [ -z "$category_icon" ] && category_icon="applications-system"
+
+            categories+=("$category_name")
+            categories+=("$category_icon")
+
+            # Peta: Nama Cantik|Nama Teknis
+            category_map+="$category_name|$category_technical_name\n"
+        fi
+    done
+
+    # Tampilkan menu dan ambil Nama Cantik yang dipilih
+    selected_category_display=$(printf "%s\0icon\x1f%s\n" "${categories[@]}" | \
+        sudo rofi -dmenu -i -show-icons -icon-theme "Sardi" -p "Select category" 2>/dev/null)
+    rc=$?
+
+    # Jika ESC / cancel atau kosong => jangan tampilkan lagi, kembalikan empty
+    if [ "$rc" -ne 0 ] || [ -z "$selected_category_display" ]; then
+        echo ""
+        return 1
+    fi
+
+    # Ambil Nama Teknis yang sesuai dari Peta
+    selected_category_technical=$(echo -e "$category_map" | grep -F "$selected_category_display|" | cut -d'|' -f2)
+
+    # Jika tidak ditemukan mapping, kembalikan empty
+    if [ -z "$selected_category_technical" ]; then
+        echo ""
+        return 1
+    fi
+
+    echo "$selected_category_technical" # Kembalikan nama teknis (misalnya: intelligent-gather)
+    return 0
+}
+
+# --- Fungsi Utama 2: Menampilkan Aplikasi ---
+function show_applications() {
+    local category_technical_name="$1" # Berisi nama teknis (misalnya: intelligent-gather)
+    local search_string="LEAKOS-$category_technical_name;" # String yang dicari
+
+    local apps=()
+
+    for app_file in "$APPLICATIONS_DIR"/*.desktop; do
+        if [ -f "$app_file" ]; then
+            no_display=$(grep -m 1 "^NoDisplay=" "$app_file" | cut -d'=' -f2-)
+            [ "$no_display" = "true" ] && continue
+
+            app_name=$(grep -m 1 "^Name=" "$app_file" | cut -d'=' -f2-)
+            app_icon=$(grep -m 1 "^Icon=" "$app_file" | cut -d'=' -f2-)
+            app_categories=$(grep -m 1 "^Categories=" "$app_file" | cut -d'=' -f2-)
+
+            # Jika Categories mengandung string pencarian
+            if [[ "$app_categories" == *"$search_string"* ]]; then
+                [ -z "$app_icon" ] && app_icon="applications-other"
+                apps+=("$app_name")
+                apps+=("$app_icon")
+            fi
+        fi
+    done
+
+    # Jika tidak ada app ditemukan untuk kategori
+    if [ "${#apps[@]}" -eq 0 ]; then
+        echo ""
+        return 1
+    fi
+
+    selected_app=$(printf "%s\0icon\x1f%s\n" "${apps[@]}" | \
+        sudo rofi -dmenu -i -show-icons -icon-theme "Sardi" -p "Select application" 2>/dev/null)
+    rc=$?
+
+    # Jika ESC / cancel atau kosong => jangan tampilkan lagi
+    if [ "$rc" -ne 0 ] || [ -z "$selected_app" ]; then
+        echo ""
+        return 1
+    fi
+
+    echo "$selected_app"
+    return 0
+}
+
+# --- Fungsi Utama 3: Menjalankan Aplikasi ---
+function run_application() {
+    local app_name="$1"
+    # Cari file .desktop berdasarkan nama aplikasi (cari exact match dulu)
+    app_file=$(grep -rl -m 1 "^Name=$app_name$" "$APPLICATIONS_DIR" 2>/dev/null || true)
+    if [ -z "$app_file" ]; then
+        # fallback: cari yang mengandung nama
+        app_file=$(grep -rl -m 1 "^Name=.*$app_name" "$APPLICATIONS_DIR" 2>/dev/null | head -1 || true)
+    fi
+
+    if [ -n "$app_file" ]; then
+        # Ekstrak perintah Exec dan bersihkan field field specification
+        exec_command=$(grep -m 1 "^Exec=" "$app_file" | cut -d'=' -f2- | sed -E 's/ *%[fFuUdDnNickvm]//g')
+        terminal_app=$(grep -m 1 "^Terminal=" "$app_file" | cut -d'=' -f2-)
+
+        if [ "$terminal_app" = "true" ]; then
+            # Ganti terminal sesuai kebutuhan (xterm sebagai default fallback)
+            terminal_cmd="${TERMINAL:-xterm}"
+            # Pastikan perintah dieksekusi di shell
+            $terminal_cmd -e bash -c "$exec_command; exec bash" &
+        else
+            # jalankan background
+            eval "$exec_command" &
+        fi
+    else
+        echo "Error: Could not find .desktop file for '$app_name'"
+        return 1
+    fi
+    return 0
+}
+
+# --- Eksekusi Program ---
+selected_category_technical=$(show_categories)
+if [ -z "$selected_category_technical" ]; then
+    # user cancel atau ESC — keluar tanpa menampilkan search lagi
+    # echo "No category selected. Exiting."
+    exit 0
+fi
+
+selected_app=$(show_applications "$selected_category_technical")
+if [ -z "$selected_app" ]; then
+    # user cancel atau ESC di aplikasi => keluar
+    # echo "No application selected. Exiting."
+    exit 0
+fi
+
+run_application "$selected_app"
